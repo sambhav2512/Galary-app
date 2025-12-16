@@ -9,7 +9,7 @@ const App = () => {
   const [index, setIndex] = useState(1);
 
    const getData = async ()=>{
-   const response= await fetch(`https://picsum.photos/v2/list?page=${index}&limit=10`);
+   const response= await fetch(`https://picsum.photos/v2/list?page=${index+1}&limit=10`);
    const result = await response.json();
    setUserData(result)   
   }
