@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Card from './components/Card';
+import axios from 'axios'
 
 const App = () => {
 
@@ -9,9 +10,13 @@ const App = () => {
   const [index, setIndex] = useState(1);
 
    const getData = async ()=>{
-   const response= await fetch(`https://picsum.photos/v2/list?page=${index+1}&limit=10`);
-   const result = await response.json();
-   setUserData(result)   
+    try {
+     const response= await axios.get(`https://picsum.photos/v2/list?page=${index+1}&limit=10`)     
+     setUserData(response.data) 
+    } 
+   catch (error) {
+      alert(error.message);
+   }  
   }
   useEffect(function(){
      getData()
